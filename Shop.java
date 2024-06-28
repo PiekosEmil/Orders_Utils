@@ -69,6 +69,10 @@ public class Shop {
         System.out.println("By status - " + SORT_BY_STATUS);
         System.out.println("By ID - " + SORT_BY_ID);
         int choice = scanner.nextInt();
+        sortOrdersBy(choice);
+    }
+
+    private static void sortOrdersBy(int choice) {
         if (choice == SORT_BY_NAME) {
             List<Map.Entry<String, Order>> list = new LinkedList<Map.Entry<String, Order>>(orders.entrySet());
             list.sort((o1, o2) -> (o1.getValue()).getName().compareTo(o2.getValue().getName()));
@@ -123,30 +127,6 @@ public class Shop {
             return;
         } else {
             System.out.println("Invalid choice");
-        }
-    }
-
-    static class CompareByName implements Comparator<Order> {
-
-        @Override
-        public int compare(Order o1, Order o2) {
-            return o1.getName().compareTo(o2.getName());
-        }
-    }
-
-    static class CompareByPrice implements Comparator<Order> {
-
-        @Override
-        public int compare(Order o1, Order o2) {
-            return Double.compare(o1.getPrice(), o2.getPrice());
-        }
-    }
-
-    static class CompareByStatus implements Comparator<Order> {
-
-        @Override
-        public int compare(Order o1, Order o2) {
-            return o1.getStatus().name().compareTo(o2.getStatus().name());
         }
     }
 }
